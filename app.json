@@ -1,11 +1,20 @@
 {
   "expo": {
+    "userInterfaceStyle": "light",
+    "ios": {
+      "userInterfaceStyle": "light"
+    },
+    "android": {
+      "userInterfaceStyle": "light"
+    },
+    "orientation": "portrait",
     "scheme": "acme",
     "web": {
       "bundler": "metro"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      ["./plugins/withDisableForcedDarkModeAndroid.js",{}]
     ],
     "name": "reset-the-word",
     "slug": "reset-the-word"
