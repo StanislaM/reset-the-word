@@ -1,43 +1,52 @@
-import { useFonts } from 'expo-font';
-import * as SplashScreen from 'expo-splash-screen';
-import { useCallback } from 'react';
 import { View, SafeAreaView, Image, Text } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
 import Logo from '../assets/Logo.png';
-import { Provider } from 'react-redux';
-import { store } from '../store';
 import { COLORS } from '../assets/themes';
-
-SplashScreen.preventAutoHideAsync();
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { styles } from '../styles';
 
 const MainMenu = () => {
-    const [fontsLoaded] = useFonts({
-        Jomhuria: require('../assets/fonts/Jomhuria-Regular.ttf'),
-    });
-
-    const onLayoutRootView = useCallback(async () => {
-        if (fontsLoaded) {
-            await SplashScreen.hideAsync();
-        }
-    }, [fontsLoaded]);
-
-    if (!fontsLoaded) {
-        return null;
-    }
-
     const router = useRouter();
 
     return (
-        <Provider store={store}>
-            <SafeAreaView
-                onLayout={onLayoutRootView}
-                style={{ flex: 1, backgroundColor: COLORS.bgColor }}
+        <SafeAreaView
+            style={{
+                flex: 1,
+                backgroundColor: COLORS.bgColor,
+                paddingTop: 60,
+            }}
+        >
+            <Stack.Screen
+                options={{
+                    header: () => <View />,
+                    headerShadowVisible: false,
+                }}
+            />
+            <View style={{ alignItems: 'center' }}>
+                <Image source={Logo} />
+            </View>
+            <View style={{ marginTop: 66 }}>
+                <TouchableOpacity>
+                    <Text style={styles.secondaryText}>Play</Text>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <Text style={{ ...styles.secondaryText, marginTop: -20 }}>
+                        Settings
+                    </Text>
+                </TouchableOpacity>
+            </View>
+            <Text
+                style={{
+                    ...styles.secondaryText,
+                    position: 'absolute',
+                    bottom: 0,
+                    fontSize: 30,
+                    lineHeight: 30,
+                }}
             >
-                <View>
-                    <Image source={Logo} />
-                </View>
-            </SafeAreaView>
-        </Provider>
+                Mokhoid Stanislaw{'\n'}PI-201
+            </Text>
+        </SafeAreaView>
     );
 };
 
