@@ -1,8 +1,8 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-type TMaxLength = 7 | 8 | 9;
-type TMinLength = 4 | 5 | 6;
-type TTime = 1 | 2 | 5;
+export type TMaxLength = 7 | 8 | 9;
+export type TMinLength = 4 | 5 | 6;
+export type TTime = 1 | 2 | 5;
 
 interface ISettingsState {
     maxLength: TMaxLength;

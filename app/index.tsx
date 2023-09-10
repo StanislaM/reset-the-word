@@ -18,21 +18,18 @@ const MainMenu = () => {
         >
             <Stack.Screen
                 options={{
-                    header: () => <View />,
-                    headerShadowVisible: false,
+                    headerShown: false,
                 }}
             />
             <View style={{ alignItems: 'center' }}>
                 <Image source={Logo} />
             </View>
             <View style={{ marginTop: 66 }}>
-                <TouchableOpacity>
+                <TouchableOpacity style={{ marginBottom: -20 }}>
                     <Text style={styles.secondaryText}>Play</Text>
                 </TouchableOpacity>
-                <TouchableOpacity>
-                    <Text style={{ ...styles.secondaryText, marginTop: -20 }}>
-                        Settings
-                    </Text>
+                <TouchableOpacity onPress={() => router.push('/settings')}>
+                    <Text style={styles.secondaryText}>Settings</Text>
                 </TouchableOpacity>
             </View>
             <Text
