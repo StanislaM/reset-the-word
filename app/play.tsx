@@ -8,6 +8,7 @@ import { styles } from '../styles';
 import { RootState } from '../store';
 import { dataWords } from '../data/words';
 import Letter from '../components/Letter/Letter';
+import { shuffle } from '../utils';
 
 interface IGuessWord {
     letter: string;
@@ -28,11 +29,18 @@ const Play = () => {
     );
 
     const [word, setWord] = useState('');
+    const [shuffledWord, setShuffledWord] = useState('');
     const [guessWord, setGuessWord] = useState<IGuessWord[]>([]);
 
     useEffect(() => {
         setWord(words[Math.floor(Math.random() * words.length)]);
     }, [words]);
+
+    useEffect(() => {
+        console.log(word);
+
+        setShuffledWord(shuffle(word.split('')).join(''));
+    }, [word]);
 
     const onLetterPress = (letter: string, callback: () => void) => {
         setGuessWord((state) => [
@@ -50,8 +58,8 @@ const Play = () => {
     };
 
     const renderLetters = useCallback(() => {
-        if (word) {
-            return word
+        if (shuffledWord !== '') {
+            return shuffledWord
                 .split('')
                 .map((letter, i) => (
                     <Letter
@@ -61,7 +69,7 @@ const Play = () => {
                     />
                 ));
         }
-    }, [word]);
+    }, [shuffledWord]);
 
     useEffect(() => {
         if (
@@ -69,7 +77,10 @@ const Play = () => {
             word !== '' &&
             guessWord.map((letter) => letter.letter).join('') === word
         ) {
-            console.log('Перемога');
+            setScore((state) => state + 1);
+            setWord(words[Math.floor(Math.random() * words.length)]);
+            guessWord.forEach((letter) => letter.onRemove());
+            setGuessWord([]);
         }
     }, [guessWord]);
 
