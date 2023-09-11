@@ -49,4 +49,15 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 8,
         marginBottom: -10,
     },
+    lettersContainer: {
+        flexDirection: 'row',
+        width: '100%',
+        flexWrap: 'wrap',
+        columnGap: 65,
+        rowGap: -25,
+        justifyContent: 'center',
+    },
+    guessWordContainer: {
+        marginTop: 30,
+    },
 });

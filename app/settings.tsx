@@ -52,9 +52,9 @@ const Settings = () => {
                         Max-length
                     </Text>
                     <RangeSlider
-                        min={7}
-                        max={9}
-                        labels={[7, 8, 9]}
+                        min={6}
+                        max={8}
+                        labels={[6, 7, 8]}
                         onValueChanged={onMaxLengthValueChanged}
                     />
 

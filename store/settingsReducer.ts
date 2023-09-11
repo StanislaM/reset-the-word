@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-export type TMaxLength = 7 | 8 | 9;
+export type TMaxLength = 6 | 7 | 8;
 export type TMinLength = 4 | 5 | 6;
 export type TTime = 1 | 2 | 5;
 

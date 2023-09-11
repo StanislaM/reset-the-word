@@ -25,7 +25,10 @@ const MainMenu = () => {
                 <Image source={Logo} />
             </View>
             <View style={{ marginTop: 66 }}>
-                <TouchableOpacity style={{ marginBottom: -20 }}>
+                <TouchableOpacity
+                    onPress={() => router.push('/play')}
+                    style={{ marginBottom: -20 }}
+                >
                     <Text style={styles.secondaryText}>Play</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => router.push('/settings')}>

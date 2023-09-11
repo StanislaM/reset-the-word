@@ -22,9 +22,9 @@ const RangeSlider = ({ min, max, labels, onValueChanged }: Props) => {
     return (
         <View style={styles.sliderContainer}>
             <View style={styles.sliderLabelContainer}>
-                {labels.map((label) => {
+                {labels.map((label, i) => {
                     return (
-                        <View>
+                        <View key={i}>
                             <Text
                                 style={{
                                     ...styles.secondaryText,
