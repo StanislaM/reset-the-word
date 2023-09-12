@@ -9,6 +9,7 @@ import { RootState } from '../store';
 import { dataWords } from '../data/words';
 import Letter from '../components/Letter/Letter';
 import { shuffle } from '../utils';
+import Modal from '../components/modal/Modal';
 
 interface IGuessWord {
     letter: string;
@@ -58,6 +59,8 @@ const Play = () => {
         setGuessWord((state) => state.slice(0, state.length - 1));
     };
 
+    const [isModalActive, setModalActive] = useState(false);
+
     const renderLetters = useCallback(() => {
         if (shuffledWord !== '') {
             return shuffledWord
@@ -102,6 +105,7 @@ const Play = () => {
         if (time * 3 - timeLeft <= 0) {
             clearInterval(timeLeftInterval);
             console.log('Game over');
+            setModalActive(true);
         }
     }, [timeLeft]);
 
@@ -159,6 +163,8 @@ const Play = () => {
             <TouchableOpacity onPress={() => router.back()}>
                 <Text style={styles.secondaryText}>Back</Text>
             </TouchableOpacity>
+
+            {isModalActive && <Modal score={score} />}
         </SafeAreaView>
     );
 };

@@ -60,4 +60,12 @@ export const styles = StyleSheet.create({
     guessWordContainer: {
         marginTop: 30,
     },
+    modalContainer: {
+        position: 'absolute',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        height: '110%',
+        backgroundColor: 'rgba(255, 255, 255, 1)',
+    },
 });
