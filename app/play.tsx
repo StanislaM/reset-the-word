@@ -1,4 +1,4 @@
-import { Stack } from 'expo-router';
+import { Stack, useRouter } from 'expo-router';
 import { SafeAreaView, View, Text, TouchableOpacity } from 'react-native';
 import { useEffect, useState, useCallback, useMemo } from 'react';
 import { useSelector } from 'react-redux';
@@ -16,6 +16,7 @@ interface IGuessWord {
 }
 
 const Play = () => {
+    const router = useRouter();
     const [score, setScore] = useState(0);
     const { maxLength, minLength, time } = useSelector(
         (state: RootState) => state.settings
@@ -84,6 +85,26 @@ const Play = () => {
         }
     }, [guessWord]);
 
+    const [timeLeft, setTimeLeft] = useState(0);
+    const [timeLeftInterval, setTimeLeftInterval] = useState(null);
+
+    useEffect(() => {
+        setTimeLeftInterval(
+            setInterval(() => {
+                setTimeLeft((state) => state + 1);
+            }, 1000)
+        );
+
+        return () => clearInterval(timeLeftInterval);
+    }, []);
+
+    useEffect(() => {
+        if (time * 3 - timeLeft <= 0) {
+            clearInterval(timeLeftInterval);
+            console.log('Game over');
+        }
+    }, [timeLeft]);
+
     return (
         <SafeAreaView
             style={{
@@ -118,12 +139,26 @@ const Play = () => {
                             ...styles.primaryText,
                             letterSpacing: 10,
                             textShadowColor: 'rgba(0, 0, 0, 0)',
+                            lineHeight: 168,
                         }}
                     >
                         {guessWord.map((letter) => letter.letter).join('')}
                     </Text>
                 </TouchableOpacity>
             </View>
+
+            <View>
+                <Text
+                    style={{
+                        ...styles.secondaryText,
+                    }}
+                >
+                    Time left: {time * 3 - timeLeft}
+                </Text>
+            </View>
+            <TouchableOpacity onPress={() => router.back()}>
+                <Text style={styles.secondaryText}>Back</Text>
+            </TouchableOpacity>
         </SafeAreaView>
     );
 };

@@ -25,6 +25,7 @@ const Letter = ({ letter, onLetterPress }: IProps) => {
                         ...styles.primaryText,
                         color: COLORS.secondaryColor,
                         textShadowColor: 'rgba(0, 0, 0, 0)',
+                        opacity: active ? 1 : 0.25,
                     }}
                 >
                     {letter}
