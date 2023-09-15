@@ -102,7 +102,7 @@ const Play = () => {
     }, []);
 
     useEffect(() => {
-        if (time * 3 - timeLeft <= 0) {
+        if (time * 30 - timeLeft <= 0) {
             clearInterval(timeLeftInterval);
             console.log('Game over');
             setModalActive(true);
@@ -157,7 +157,7 @@ const Play = () => {
                         ...styles.secondaryText,
                     }}
                 >
-                    Time left: {time * 3 - timeLeft}
+                    Time left: {time * 30 - timeLeft}
                 </Text>
             </View>
             <TouchableOpacity onPress={() => router.back()}>

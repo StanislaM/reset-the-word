@@ -61,6 +61,7 @@ export const styles = StyleSheet.create({
         marginTop: 30,
     },
     modalContainer: {
+        top: 0,
         position: 'absolute',
         justifyContent: 'center',
         alignItems: 'center',

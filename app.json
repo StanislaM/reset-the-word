@@ -17,6 +17,9 @@
       ["./plugins/withDisableForcedDarkModeAndroid.js",{}]
     ],
     "name": "reset-the-word",
-    "slug": "reset-the-word"
+    "slug": "reset-the-word",
+    "updates": {
+      "useClassicUpdates": true
+    }
   }
 }
